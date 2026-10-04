@@ -47,6 +47,37 @@ def train(X, Y, iterations, alpha):
         b -= Db*alpha
     return w, b
 
+def addaptive_train(X, Y, alpha, iter):
+    lengthW = len(X[0])
+    w = np.zeros(lengthW) #יוצר מערך של אפסים באורך של שורה אחת של איקס
+    alphaW = np.zeros(lengthW)
+
+    for i in range(lengthW):
+        w[i] = random.randint(-26, 26)
+        alphaW[i] = alpha
+
+    b = random.randint(-10, 10)
+    alphaB = alpha
+
+    
+    for i in range(iter):
+        J, Dw, Db = calcJ(X, Y, w, b)
+
+        for j in range(lengthW):
+            if Dw[j]*alphaW[j] > 0:# אז כזה אם הנגזרת חיובית או שלילית
+                alphaW[j] *= 1.1
+            else:
+                alphaW[j] *= 0.9
+            if alphaB*Db > 0:
+                alphaB *= 1.1
+            else: 
+                alphaB *= 0.9
+        for j in range(lengthW):
+            w[j] -= Dw*alphaW
+        b -= Db*alphaB
+    return w, b
+
+
 W, B = train(x, y, 1000000, alpha)
 for i in range (len(W)):
     print(f"W={W[i]},", end=" ")
