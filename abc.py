@@ -21,9 +21,10 @@ def calcJ(X,Y,W, b):
         diff=0
         y_hat = b
         for j in range(n):
-            y_hat+=W[j]*X[i,j]
+            y_hat += W[j]*X[i,j]
+        # y_hat += X @ W.T
 
-        diff=y_hat-Y[i]
+        diff = y_hat-Y[i]
         
         J = J + diff ** 2
         Db = Db + diff * 2
@@ -76,6 +77,8 @@ def addaptive_train(X, Y, alpha, iter):
             w[j] -= Dw*alphaW
         b -= Db*alphaB
     return w, b
+
+
 
 
 W, B = train(x, y, 1000000, alpha)
