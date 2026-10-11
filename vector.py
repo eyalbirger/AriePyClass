@@ -45,7 +45,7 @@ class vector:
                 for i in range(self.size):
                     new_vec.append(self.vec[i] + other.vec[i]) 
             else:
-                return TypeError("broski")
+                return TypeError("either the size of the vec is wrong or the is_col doesnt match")
         elif isinstance(other, (int, float)):
             for i in range(self.size):
                 new_vec.append(self.vec[i] + other) 
@@ -61,7 +61,7 @@ class vector:
                 for i in range(self.size):
                     new_vec.append(self.vec[i] - other.vec[i]) 
             else:
-                return TypeError("broski")
+                return TypeError("either the size of the vec is wrong or the is_col doesnt match")
         elif isinstance(other, (int, float)):
             for i in range(self.size):
                 new_vec.append(self.vec[i] - other) 
@@ -77,7 +77,7 @@ class vector:
                 for i in range(self.size):
                     new_vec.append(self.vec[i] * other.vec[i]) 
             else:
-                return TypeError("broski")
+                return TypeError("either the size of the vec is wrong or the is_col doesnt match")
         elif isinstance(other, (int, float)):
             for i in range(self.size):
                 new_vec.append(self.vec[i] * other) 
@@ -93,7 +93,7 @@ class vector:
                 for i in range(self.size):
                     new_vec.append(self.vec[i] / other.vec[i]) 
             else:
-                return TypeError("broski")
+                return TypeError("either the size of the vec is wrong or the is_col doesnt match")
         elif isinstance(other, (int, float)):
             for i in range(self.size):
                 new_vec.append(self.vec[i] / other) 
@@ -128,9 +128,9 @@ add = v1 + v2
 sub = v1 - v2
 div = v1 / v2
 
-print("mul", mul)
-print("add", add)
-print("sub", sub)
-print("div", div)
+print("mul:", mul)
+print("add:", add)
+print("sub:", sub)
+print("div:", div)
 
     
