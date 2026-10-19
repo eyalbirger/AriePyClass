@@ -6,23 +6,9 @@ from scipy import ndimage
 import h5py
 import matplotlib.pyplot as plt
 from PIL import Image
-
-
-
-def load_dataset():
-    f='unit10/datasets/cat_nocat'
-    
-    train_dataset = h5py.File(f+r'/train_catvnoncat.h5', "r")
-    train_set_x_orig = np.array(train_dataset["train_set_x"][:]) # your train set features
-    train_set_y_orig = np.array(train_dataset["train_set_y"][:]) # your train set labels
-
-    test_dataset = h5py.File(f + r'/test_catvnoncat.h5', "r")
-    test_set_x_orig = np.array(test_dataset["test_set_x"][:]) # your test set features
-    test_set_y_orig = np.array(test_dataset["test_set_y"][:]) # your test set labels
-
-    classes = np.array(test_dataset["list_classes"][:]) # the list of classes
-    
-    return train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes
+import sys
+sys.path.append(r"unit10/c1w2_utils.py")
+import unit10.c1w2_utils
 
 train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset() 
 index = 25 # change index to get a different picture
@@ -44,6 +30,8 @@ print ("train_set_x shape: " + str(train_set_x_orig.shape))
 print ("train_set_y shape: " + str(train_set_y.shape))
 print ("test_set_x shape: " + str(test_set_x_orig.shape))
 print ("test_set_y shape: " + str(test_set_y.shape))
+
+
 
 """
 #m = len(y)
