@@ -1,5 +1,6 @@
 from PIL import Image, ImageFilter, ImageFile
 from pathlib import Path
+import numpy as np
 import os
 
 
@@ -8,14 +9,10 @@ pth = 'images/totally_normal_pic.jpg'
 newPth = Path("images/totally_normal_pic.png")
 img = Image.open(pth)
 
-img.show()
+#with vectors
+arr = np.array(img)
+red = np.sum(arr[:, :, 0])
+green = np.sum(arr[:, :, 1])
+blue = np.sum(arr[:, :, 2])
 
-
-with Image.open(pth) as img:
-    img_gray = img.convert("L")
-    edges = img_gray.filter(ImageFilter.FIND_EDGES)
-    edges.save('images/totally_normal_pic.png')
-    
-    if newPth.is_file():
-        print("exists but now im deleting this shit")
-        os.remove(newPth)
+print(f"red: {red}, green: {green}, blue: {blue}")
