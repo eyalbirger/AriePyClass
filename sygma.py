@@ -6,34 +6,54 @@ from scipy import ndimage
 import h5py
 import matplotlib.pyplot as plt
 from PIL import Image
-import sys
-sys.path.append(r"unit10/c1w2_utils.py")
-import unit10.c1w2_utils
+import unit10.c1w2_utils as c1w2
 
-train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset() 
+train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = c1w2.load_dataset() 
 index = 25 # change index to get a different picture
 plt.imshow(train_set_x_orig[index])
 plt.show()
 print ("y = " + str(train_set_y[index]) + ", it's a '" + 
 classes[np.squeeze(train_set_y[index])].decode("utf-8") +  "' picture.")
 
-m_train = len(train_set_x_orig)
-m_test = len(test_set_x_orig)
-num_px = train_set_x_orig.shape[1] * train_set_x_orig.shape[0]
+#exe 1
+num_of_pics_train = len(train_set_x_orig) # m
+num_of_pics_test = len(test_set_x_orig)
+
+num_px = len(train_set_x_orig[index]) #
 
 
-print ("Number of training examples: m_train = " + str(m_train))
-print ("Number of testing examples: m_test = " + str(m_test))
-print ("Height/Width of each image: num_px = " + str(num_px))
-print ("Each image is of size: (" + str(num_px) + ", " + str(num_px) + ", 3)")
-print ("train_set_x shape: " + str(train_set_x_orig.shape))
-print ("train_set_y shape: " + str(train_set_y.shape))
-print ("test_set_x shape: " + str(test_set_x_orig.shape))
-print ("test_set_y shape: " + str(test_set_y.shape))
+print(f"num of training pics: {num_of_pics_train}")
+print(f"num of testing pics: {num_of_pics_test}")
+print(f"height: {num_px}, width: {num_px}")
+print(f"each image is of size: ({num_px}, {num_px}, 3)") # height by width by 3(rgb)
+
+print(f"train set x shape: {str(train_set_x_orig.shape)}")
+print(f"train set y shape: {str(train_set_y.shape)}")
+print(f"test set x shape: {str(test_set_x_orig.shape)}")
+print(f"test set y shape: {str(test_set_y.shape)}")
+
+#exe 2
+
+train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1)
+test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1)
+
+print(f"train set x flatten: {str(train_set_x_flatten.shape)}")
+print(f"test set x flatten: {str(test_set_x_flatten.shape)}")
+
+train_set_x = train_set_x_flatten / 255 
+#train_set_x = []
+#for pic in train_set_x_flatten:
+#    train_set_x.append(pic/255)
 
 
 
-"""
+
+
+
+
+'''
+train_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1)
+train_y_flatten = train_set_y.reshape()
 #m = len(y)
 #n = x.shape[0]
 
@@ -124,4 +144,5 @@ for i in range (len(W)):
 print()
 print("B = ", B)
 
-"""
+
+'''

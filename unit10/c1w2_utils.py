@@ -6,16 +6,14 @@ def main():
     if __name__ == "__main__":
         main()
 
-def load_datasetC1W2():
-    return load_dataset(r'\unit10\datasets\cat_nocat')
-
-def load_dataset(path):
-    f = os.getcwd() + path
-    train_dataset = h5py.File(f+r'\train_catvnoncat.h5', "r")
+def load_dataset():
+    f='unit10/datasets/cat_nocat'
+    
+    train_dataset = h5py.File(f+r'/train_catvnoncat.h5', "r")
     train_set_x_orig = np.array(train_dataset["train_set_x"][:]) # your train set features
     train_set_y_orig = np.array(train_dataset["train_set_y"][:]) # your train set labels
 
-    test_dataset = h5py.File(f + r'\test_catvnoncat.h5', "r")
+    test_dataset = h5py.File(f + r'/test_catvnoncat.h5', "r")
     test_set_x_orig = np.array(test_dataset["test_set_x"][:]) # your test set features
     test_set_y_orig = np.array(test_dataset["test_set_y"][:]) # your test set labels
 
